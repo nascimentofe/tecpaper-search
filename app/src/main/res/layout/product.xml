@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragment.ProductFragment"
+    android:padding="40dp">
+
+    <ImageView
+        android:id="@+id/imgImageProductFragment"
+        android:layout_width="320dp"
+        android:layout_height="300dp"
+        android:contentDescription="@string/todo"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:id="@+id/txtNameProductFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/charly_dreams"/>
+
+    <TextView
+        android:id="@+id/txtDescProductFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/charly_dreams"
+        android:gravity="center"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"/>
+
+    <TextView
+        android:id="@+id/txtValueProductFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="25sp"
+        android:textColor="@android:color/holo_green_dark"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/charly_dreams"/>
+
+</LinearLayout>
