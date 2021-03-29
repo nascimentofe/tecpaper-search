@@ -24,5 +24,5 @@ System used in all centers of technological stationery 4.0, TecPaper.
 
 ###
 - #### Scanner Screen
-[![TecPaper](http://tecpaper.tk/tecpaper/public/mov/video2.gif)](http://chadamanu.tk/tecpaper/mov/tecpaper_search2.gif)
+
 
