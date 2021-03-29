@@ -15,16 +15,17 @@ public class Product implements Serializable{
     private String name;
     private String desc;
     private double value;
-    private String code;
-    private int image;
+    private String image;
 
-    public Product(long id, String name, String desc, double value, String code, int image) {
+    public Product(long id, String name, String desc, double value, String image) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.value = value;
-        this.code = code;
         this.image = image;
+    }
+
+    public Product() {
     }
 
     public long getId() {
@@ -59,19 +60,11 @@ public class Product implements Serializable{
         this.value = value;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

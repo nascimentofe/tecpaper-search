@@ -1,4 +1,4 @@
-package com.tectoy.fullscanner.model;
+package com.tectoy.fullscanner.model.sqlite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

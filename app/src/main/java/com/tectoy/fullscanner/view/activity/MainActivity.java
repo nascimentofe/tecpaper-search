@@ -17,8 +17,10 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.scwang.wave.MultiWaveHeader;
 import com.tectoy.fullscanner.R;
-import com.tectoy.fullscanner.model.DatabaseContract;
-import com.tectoy.fullscanner.model.DatabaseHelper;
+import com.tectoy.fullscanner.model.Product;
+import com.tectoy.fullscanner.model.request.IonRequest;
+import com.tectoy.fullscanner.model.sqlite.DatabaseContract;
+import com.tectoy.fullscanner.model.sqlite.DatabaseHelper;
 import com.tectoy.fullscanner.utils.Constant;
 import com.tectoy.fullscanner.view.fragment.HomeFragment;
 
@@ -46,14 +48,25 @@ public class MainActivity extends AppCompatActivity {
 
         hideStatusBarAndNavigationBar();
 
-        initProducts();
-
         initViews();
-
-        startMainFragment();
 
         startAnimation();
 
+        startMainFragment();
+
+    }
+
+    @Override
+    protected void onResume() {
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(dbHelper != null)
+            dbHelper.close();
+        super.onDestroy();
     }
 
     private void hideStatusBarAndNavigationBar() {
@@ -72,12 +85,6 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.containerFragment, home, "Home");
         ft.addToBackStack("Home");
         ft.commit();
-    }
-
-    @Override
-    protected void onResume() {
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        super.onResume();
     }
 
     private void startAnimation() {
@@ -102,66 +109,6 @@ public class MainActivity extends AppCompatActivity {
         imgIconHome.setOnClickListener(v -> {
             startMainFragment();
         });
-    }
-
-    private void initProducts() {
-        // NOVA INSTANCIA DO HELPER
-        dbHelper = new DatabaseHelper(this);
-        // OBTENDO O REPOSITÓRIO OU BASE DE DADOS, EM MODO 'ESCRITA'
-        db = dbHelper.getWritableDatabase();
-
-        // CRIANDO UM NOVO MAPA DE VALORES, ONDE O NOME DAS COLUNAS SERÃO AS CHAVES
-        ContentValues valuesOne = new ContentValues();
-        valuesOne.put(DatabaseContract.FeedProduct.COLUMN_NAME_ID, 1);
-        valuesOne.put(DatabaseContract.FeedProduct.COLUMN_NAME_NAME, "Mini post-it");
-        valuesOne.put(DatabaseContract.FeedProduct.COLUMN_NAME_DESC, "Notas auto-adesivas removíveis. 4 blocos de 100 folhas.");
-        valuesOne.put(DatabaseContract.FeedProduct.COLUMN_NAME_VALUE, 4.25);
-        valuesOne.put(DatabaseContract.FeedProduct.COLUMN_NAME_CODE, "7891040091027");
-        valuesOne.put(DatabaseContract.FeedProduct.COLUMN_NAME_IMAGE, R.drawable.postit);
-
-        ContentValues valuesTwo = new ContentValues();
-        valuesTwo.put(DatabaseContract.FeedProduct.COLUMN_NAME_ID, 2);
-        valuesTwo.put(DatabaseContract.FeedProduct.COLUMN_NAME_NAME, "Cola em bastão");
-        valuesTwo.put(DatabaseContract.FeedProduct.COLUMN_NAME_DESC, "A cola em bastão Pritt não tem solventes nem PVC e pode ser eliminada lavando a peça manchada a 30 ºC.");
-        valuesTwo.put(DatabaseContract.FeedProduct.COLUMN_NAME_VALUE, 7.60);
-        valuesTwo.put(DatabaseContract.FeedProduct.COLUMN_NAME_CODE, "40151748");
-        valuesTwo.put(DatabaseContract.FeedProduct.COLUMN_NAME_IMAGE, R.drawable.cola);
-
-        ContentValues valuesThree = new ContentValues();
-        valuesThree.put(DatabaseContract.FeedProduct.COLUMN_NAME_ID, 3);
-        valuesThree.put(DatabaseContract.FeedProduct.COLUMN_NAME_NAME, "Corretivo Líquido");
-        valuesThree.put(DatabaseContract.FeedProduct.COLUMN_NAME_DESC, "Cobre e corrige textos impressos e esferográficas, não resseca e é inodoro.");
-        valuesThree.put(DatabaseContract.FeedProduct.COLUMN_NAME_VALUE, 13.90);
-        valuesThree.put(DatabaseContract.FeedProduct.COLUMN_NAME_CODE, "7897254100401");
-        valuesThree.put(DatabaseContract.FeedProduct.COLUMN_NAME_IMAGE, R.drawable.corretivo);
-
-        ContentValues valuesFour = new ContentValues();
-        valuesFour.put(DatabaseContract.FeedProduct.COLUMN_NAME_ID, 4);
-        valuesFour.put(DatabaseContract.FeedProduct.COLUMN_NAME_NAME, "Marca texto");
-        valuesFour.put(DatabaseContract.FeedProduct.COLUMN_NAME_DESC, "Pincel Marca Texto Cor: Amarelo. Modelo: Officelogic. Caixa:12 unidades. Marca: Radex");
-        valuesFour.put(DatabaseContract.FeedProduct.COLUMN_NAME_VALUE, 2.05);
-        valuesFour.put(DatabaseContract.FeedProduct.COLUMN_NAME_CODE, "7897254118345");
-        valuesFour.put(DatabaseContract.FeedProduct.COLUMN_NAME_IMAGE, R.drawable.marca_texto);
-
-        String selectQuery = "SELECT * FROM " + DatabaseContract.FeedProduct.TABLE_NAME;
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        Log.i(Constant.TAG, String.valueOf(cursor.getCount()));
-
-        if(cursor.getCount() == 0){
-            db.insert(DatabaseContract.FeedProduct.TABLE_NAME, null, valuesOne);
-            db.insert(DatabaseContract.FeedProduct.TABLE_NAME, null, valuesTwo);
-            db.insert(DatabaseContract.FeedProduct.TABLE_NAME, null, valuesThree);
-            db.insert(DatabaseContract.FeedProduct.TABLE_NAME, null, valuesFour);
-        }
-        cursor.close();
-    }
-
-    @Override
-    protected void onDestroy() {
-        if(dbHelper != null)
-            dbHelper.close();
-        super.onDestroy();
     }
 
     private int hideSystemBars() {

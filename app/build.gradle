@@ -39,6 +39,8 @@ dependencies {
     implementation 'com.daimajia.androidanimations:library:2.4@aar'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-andx'
+    implementation 'com.koushikdutta.ion:ion:2.2.1'
+    implementation 'com.squareup.picasso:picasso:2.8'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

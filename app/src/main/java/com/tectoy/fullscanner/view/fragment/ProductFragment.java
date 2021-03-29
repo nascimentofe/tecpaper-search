@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.squareup.picasso.Picasso;
 import com.tectoy.fullscanner.R;
 import com.tectoy.fullscanner.model.Product;
 
@@ -42,8 +43,13 @@ public class ProductFragment extends Fragment {
         for(Product product : products){
 
             imgProduct = (ImageView) vProduct.findViewById(R.id.imgImageProductFragment);
-            imgProduct.setImageResource(product.getImage());
             imgProduct.requestFocus();
+            if(product.getImage().equals("") || product.getImage().equals("imagem.jpg")){
+                // NAO HÁ IMAGEM NO PRODUTO
+                Picasso.get().load("https://img.icons8.com/dotty/2x/id-not-verified.png" + product.getImage()).into(imgProduct);
+            }else{
+                Picasso.get().load("http://tecpaper.tk/" + product.getImage()).into(imgProduct);
+            }
 
             txtNameProduct = (TextView) vProduct.findViewById(R.id.txtNameProductFragment);
             txtNameProduct.setText(product.getName());

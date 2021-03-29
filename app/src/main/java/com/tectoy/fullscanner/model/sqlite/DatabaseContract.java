@@ -1,4 +1,4 @@
-package com.tectoy.fullscanner.model;
+package com.tectoy.fullscanner.model.sqlite;
 
 import android.provider.BaseColumns;
 
