@@ -20,9 +20,9 @@ System used in all centers of technological stationery 4.0, TecPaper.
 ## Demo
 
 - #### Main Screen
-[![TecPaper](http://tecpaper.tk/tecpaper/public/mov/tecpaper_search.gif)](http://chadamanu.tk/tecpaper/mov/tecpaper_search.gif)
+[![TecPaper](http://tecpaper.tk/tecpaper/public/mov/video.gif)](http://chadamanu.tk/tecpaper/mov/tecpaper_search.gif)
 
 ###
 - #### Scanner Screen
-[![TecPaper](http://chadamanu.tk/tecpaper/mov/tecpaper_search2.gif)](http://chadamanu.tk/tecpaper/mov/tecpaper_search2.gif)
+[![TecPaper](http://tecpaper.tk/tecpaper/public/mov/video2.gif)](http://chadamanu.tk/tecpaper/mov/tecpaper_search2.gif)
 
