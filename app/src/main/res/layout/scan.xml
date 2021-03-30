@@ -23,6 +23,7 @@
         />
 
     <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/img_gifscan"
         android:layout_width="380dp"
         android:layout_height="350dp"
         android:src="@drawable/anim_scan" />
@@ -35,6 +36,7 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/txt_textoscan1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Aproxime um "
@@ -43,6 +45,7 @@
             />
 
         <TextView
+            android:id="@+id/txt_textoscan2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="produto "
@@ -60,5 +63,13 @@
             />
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:visibility="gone" />
 
 </LinearLayout>

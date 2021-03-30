@@ -13,6 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +35,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * @company TECTOY
  * @department development and support
@@ -44,6 +49,9 @@ public class ScanFragment extends Fragment {
 
     EditText editCode;
     List<Product> listProduct;
+    ProgressBar progressBar;
+    GifImageView imgGif;
+    TextView txt1;
 
     @Nullable
     @Override
@@ -54,6 +62,12 @@ public class ScanFragment extends Fragment {
         editCode = (EditText) vScan.findViewById(R.id.editCode);
         editCode.setInputType(InputType.TYPE_NULL);
         editCode.requestFocus();
+
+        progressBar = (ProgressBar) vScan.findViewById(R.id.progressBar);
+
+        imgGif = (GifImageView) vScan.findViewById(R.id.img_gifscan);
+
+        txt1 = (TextView) vScan.findViewById(R.id.txt_textoscan1);
 
         initActions();
 
@@ -75,8 +89,13 @@ public class ScanFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 if(s.length() > 0 && !s.toString().isEmpty()){
+
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         if(!editCode.getText().toString().equals("")){
+
+                            progressBar.setVisibility(View.VISIBLE);
+                            txt1.setText("Pesquisando seu ");
+
                             searchItem(
                                     editCode.getText().toString().replace("\n", "").replace(" ", "").trim(),
                                     getActivity());
@@ -94,6 +113,7 @@ public class ScanFragment extends Fragment {
 
             editCode.requestFocus();
             clearEditCode();
+            editCode.requestFocus();
 
             startProductFragment(bundle, activity);
         }
@@ -110,28 +130,31 @@ public class ScanFragment extends Fragment {
                 .asJsonObject()
                 .setCallback((e, result) -> {
 
-                    Product product;
+                    Product product = new Product(
+                            0,
+                            "Não encontrado",
+                            "Nenhum produto foi localizado.",
+                            0.0,
+                            ""
+                    );
 
-                    if(result.get("id") != null){
-                        product = new Product(
-                                result.get("id").getAsLong(),
-                                result.get("name").getAsString(),
-                                result.get("description").getAsString(),
-                                result.get("price").getAsDouble(),
-                                result.get("image").getAsString()
-                        );
-                    }else{
-                        product = new Product(
-                                0,
-                                "Não encontrado",
-                                "Nenhum produto foi localizado.",
-                                0.0,
-                                ""
-                        );
+                    if (result != null){
+                        if(result.get("name") != null){
+                            product = new Product(
+                                    result.get("id").getAsLong(),
+                                    result.get("name").getAsString(),
+                                    result.get("description").getAsString(),
+                                    result.get("price").getAsDouble(),
+                                    result.get("image").getAsString()
+                            );
+                        }
                     }
 
                     listProduct = new ArrayList<>();
                     listProduct.add(product);
+
+                    progressBar.setVisibility(View.GONE);
+                    txt1.setText("Aproxime um ");
 
                     showLogs();
                     showProduct(activity);
