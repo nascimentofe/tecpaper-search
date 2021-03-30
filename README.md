@@ -1,6 +1,6 @@
 <p style="text-align: center">
     <a href="https://laravel.com" target="_blank">
-        <img src="https://chadamanu.tk/tecpaper/img/ic_launcher_round.png" width="150" alt="">
+        <img src="http://tecpaper.tk/tecpaper/public/img/ic_launcher_round.png" width="150" alt="">
     </a>
 </p>
 
@@ -20,9 +20,9 @@ System used in all centers of technological stationery 4.0, TecPaper.
 ## Demo
 
 - #### Main Screen
-[![TecPaper](http://chadamanu.tk/tecpaper/mov/tecpaper_search.gif)](http://chadamanu.tk/tecpaper/mov/tecpaper_search.gif)
+[![TecPaper](http://tecpaper.tk/tecpaper/public/mov/video.gif)](http://chadamanu.tk/tecpaper/mov/tecpaper_search.gif)
 
 ###
 - #### Scanner Screen
-[![TecPaper](http://chadamanu.tk/tecpaper/mov/tecpaper_search2.gif)](http://chadamanu.tk/tecpaper/mov/tecpaper_search2.gif)
+
 
