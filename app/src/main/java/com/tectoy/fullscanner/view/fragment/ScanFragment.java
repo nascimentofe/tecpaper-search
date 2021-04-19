@@ -126,7 +126,7 @@ public class ScanFragment extends Fragment {
         }
 
         Ion.with(getContext())
-                .load("http://tecpaper.tk/tecpaper/public/api/products/" + item)
+                .load("http://tecpaper.tk/tecpaper/public/api/products?id=" + item)
                 .asJsonObject()
                 .setCallback((e, result) -> {
 
@@ -177,10 +177,11 @@ public class ScanFragment extends Fragment {
 
     private void startProductFragment(Bundle bundle, FragmentActivity activity){
         ProductFragment product = new ProductFragment();
+        product.setArguments(bundle);
         FragmentManager fm = activity.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        product.setArguments(bundle);
-        ft.replace(R.id.containerFragment, product).commit();
+        ft.replace(R.id.containerFragment, product, "Product");
+        ft.commit();
     }
 
 }

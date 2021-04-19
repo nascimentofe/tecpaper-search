@@ -45,7 +45,8 @@ public class HomeFragment extends Fragment {
         ScanFragment scan = new ScanFragment();
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.containerFragment, scan).commit();
+        ft.replace(R.id.containerFragment, scan, "Scan");
+        ft.commit();
     }
 
 
